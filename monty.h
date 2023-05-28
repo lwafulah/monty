@@ -4,6 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <ctype.h>
+
+#define EXIT_FAILURE 1
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -36,21 +45,27 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+typedef struct
+{
+    char *buffer;
+    int lifo;
+    unsigned int cont;
+    char *arg;
+    stack_t *head;
+    FILE *fd;
+} MontyData;
 
+extern void free_monty_data(MontyData *data);
+extern MontyData monty_data;
 
 void push_opcode(stack_t **stack, unsigned int line_number);
 void pall_opcode(stack_t **stack, unsigned int line_number);
-
-
-
-
-
-
-
-
-
-
-
+void _pint(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number);
 
 
 #endif
