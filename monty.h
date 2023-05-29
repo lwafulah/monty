@@ -45,27 +45,22 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-typedef struct
-{
-    char *buffer;
-    int lifo;
-    unsigned int cont;
-    char *arg;
-    stack_t *head;
-    FILE *fd;
-} MontyData;
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+int main(int argc, char *argv[]);
+void execute_opcode(char *line, stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
 
-extern void free_monty_data(MontyData *data);
-extern MontyData monty_data;
 
-void push_opcode(stack_t **stack, unsigned int line_number);
-void pall_opcode(stack_t **stack, unsigned int line_number);
-void _pint(stack_t **stack, unsigned int line_number);
-void _pop(stack_t **stack, unsigned int line_number);
-void _add(stack_t **stack, unsigned int line_number);
-void _nop(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int line_number);
-void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number);
+
+
 
 
 #endif
